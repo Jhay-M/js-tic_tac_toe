@@ -39,13 +39,18 @@ let Game = () => {
 
     let p2Name = window.prompt('P2 Enter Your Name:');
     let p2Token = window.prompt('P2 Enter Your Token:');
-    alert(`Your token is (${p2Name}, ${p2Token})`);
+    alert(`Your details are (${p2Name}, ${p2Token})`);
     let p2 = Player(p2Name, p2Token);
 
     let cells = document.querySelectorAll('td');
     cells.forEach((cell, index) => {
         cell.addEventListener('click', () => {
-            if (p1.turn == p2.turn) {
+            let error = document.querySelector('.alert');
+            let target = document.querySelector(`.cell${index + 1}`);
+
+            if (target.textContent != '-') {
+                error.textContent = 'Invalid Play'; // logic to prevent double plays on a position
+            } else if (p1.turn == p2.turn) {
                 p1.play(index + 1);
                 p1.turn++;
             } else if (p1.turn > p2.turn) {
