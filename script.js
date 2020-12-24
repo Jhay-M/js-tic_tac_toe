@@ -109,4 +109,5 @@ let Game = () => {
     })
 }
 
-
+let game = document.querySelector('.new');
+game.addEventListener('click', Game);
